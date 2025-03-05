@@ -19,5 +19,9 @@ Pod::Spec.new do |s|
   s.libraries           = 'c', 'sqlite3', 'stdc++'
   s.framework           = 'AudioToolbox','AVFoundation', 'CoreAudio', 'CoreGraphics', 'CoreVideo', 'GLKit', 'VideoToolbox'
   s.dependency          'React-Core'
-  s.dependency          'JitsiWebRTC', '~> 124.0.0'
+  s.prepare_command = <<-CMD
+    curl -LO https://github.com/freedom00000/react-native-webrtc/releases/download/v124.0.0/WebRTC.xcframework.zip
+    unzip -o WebRTC.xcframework.zip -d "${PWD}"
+  CMD
+  s.vendored_frameworks = 'WebRTC.xcframework'
 end
